@@ -1,4 +1,5 @@
-=begin
+
+
 FactoryGirl.define do
   factory :user do
     sequence(:name)  { |n| "Person #{n}" }
@@ -11,5 +12,5 @@ FactoryGirl.define do
     end
   end
 end
-=end
+
 
