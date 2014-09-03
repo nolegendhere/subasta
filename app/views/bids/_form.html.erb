@@ -1,12 +1,15 @@
-<%= form_for :bid , url: bids_path do |f| %>
+<%= form_for(@bid) do |f| %>
 	<%= f.hidden_field :auction_id, :value => auction.id %>
+	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
+		<%= f.label :name %>
+		<%= f.text_field :name, placeholder: "Name of object..." %>
 		<%= f.label :category %>
 		<%= f.text_field :category, placeholder: "Category of object..." %>
 		<%= f.label :subcategory %>
 		<%= f.text_field :subcategory, placeholder: "Subcategory of object..." %>
-		<%= f.label :name %>
-		<%= f.text_field :name, placeholder: "Name of object..." %>
+		<%= f.label :price %>
+		<%= f.text_field :price, placeholder: "Price of object..." %>
 	</div>
 	<%= f.submit "Bid", class: "btn btn-large btn-primary" %>
 <% end %>

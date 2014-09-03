@@ -6,6 +6,9 @@ class AuctionsController < ApplicationController
 	
 	def index
 		@auctions = Auction.paginate(page: params[:page])
+		if admin?(current_user)
+			@bid = current_user.bids.build
+		end
 	end
 
 	def create
@@ -48,4 +51,11 @@ class AuctionsController < ApplicationController
 			@auction = current_user.auctions.find_by(id: params[:id])
 			redirect_to root_url if @auction.nil?
 		end
+
+		def admin?(user)
+		    if not user.nil?
+		      return user.admin
+		    end
+		    return false
+	  	end
 end

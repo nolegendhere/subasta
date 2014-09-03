@@ -11,7 +11,8 @@ class BidsController < ApplicationController
 			flash[:success] = "Bid created!"
 			redirect_to auctions_url
 		else
-			render 'static_pages/home'
+			@auctions = Auction.paginate(page: params[:page])
+			render 'auctions/index'
 		end
 	end
 
@@ -40,13 +41,20 @@ class BidsController < ApplicationController
 	private
 
 		def bid_params
-			params.require(:bid).permit(:name,:category,:subcategory,:auction_id)
+			params.require(:bid).permit(:name,:category,:subcategory,:price,:auction_id)
 		end
 
 		def correct_user
 			@bid = current_user.bids.find_by(id: params[:id])
 			redirect_to root_url if @bid.nil?
 		end
+
+		def admin?(user)
+		    if not user.nil?
+		      return user.admin
+		    end
+		    return false
+	  	end
 
 #		def auth_requirements_one
 #			@biduser = current_user.bids.find_by(id: params[:id])

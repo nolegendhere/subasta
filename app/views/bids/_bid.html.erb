@@ -2,6 +2,7 @@
 	<span class="content"><%= bid.name %></span>
 	<span class="content"><%= bid.category %></span>
 	<span class="content"><%= bid.subcategory %></span>
+	<span class="content"><%= bid.price %></span>
 	<span class="timestamp">
 		Created <%= time_ago_in_words(bid.created_at) %> ago by <%= bid.user.name %>
 	</span>
