@@ -1,0 +1,10 @@
+<% provide(:title, "Auctions") %>
+	<div class="row">
+		<div class="span8">
+			<%= will_paginate @auctions%>
+				<ol class="userauctions">
+					<%= render @auctions %>
+				</ol>
+			<%= will_paginate @auctions%>
+		</div>
+	</div>

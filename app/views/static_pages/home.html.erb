@@ -1,9 +1,26 @@
 <% provide(:title, 'Home') %>
-<div class="center hero-unit">
-<h1>Auction</h1>
-	<h2>
-  	Home page for the auction
-	</h2>
-</div>
+	<% if admin?(current_user) %>
+		<div class="row">
+			<aside class="span4">
+				<section>
+					<%= render 'shared/user_info' %>
+				</section>
+				<section>
+					<%= render 'shared/auction_form' %>
+				</section>
+			</aside>
+			<div class="span8">
+				<h3>Publicated Posts</h3>
+					<%= render 'shared/feed' %>
+			</div>
+		</div>
+	<% else %>
+		<div class="center hero-unit">
+		<h1>Auction</h1>
+			<h2>
+		  	Home page for the auction
+			</h2>
+		</div>
+	<% end %>
 
 

@@ -1,0 +1,18 @@
+<% provide(:title, "Edit Bid") %>
+	<h1>Update Bid</h1>
+	<div class="row">
+		<div class="span6 offset3">
+			<%= form_for(@bid) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="field">
+					<%= f.label :category %>
+					<%= f.text_field :category %>
+					<%= f.label :subcategory %>
+					<%= f.text_field :subcategory %>
+					<%= f.label :name %>
+					<%= f.text_field :name %>
+				</div>
+					<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+			<% end %>
+		</div>
+	</div>

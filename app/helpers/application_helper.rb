@@ -10,14 +10,12 @@ module ApplicationHelper
     end
   end
 
-=begin
   def admin?(user)
     if not user.nil?
       return user.admin
     end
     return false
   end
-=end
   
  
   

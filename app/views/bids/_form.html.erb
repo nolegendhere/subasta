@@ -1,0 +1,12 @@
+<%= form_for :bid , url: bids_path do |f| %>
+	<%= f.hidden_field :auction_id, :value => auction.id %>
+	<div class="field">
+		<%= f.label :category %>
+		<%= f.text_field :category, placeholder: "Category of object..." %>
+		<%= f.label :subcategory %>
+		<%= f.text_field :subcategory, placeholder: "Subcategory of object..." %>
+		<%= f.label :name %>
+		<%= f.text_field :name, placeholder: "Name of object..." %>
+	</div>
+	<%= f.submit "Bid", class: "btn btn-large btn-primary" %>
+<% end %>

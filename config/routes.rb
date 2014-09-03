@@ -1,7 +1,22 @@
 Subasta::Application.routes.draw do
 
+  #get "bids/new"
+  #get "auctions/new"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :users do
+    resources :auctions
+  end
+
+  resources :auctions do
+    resources :bids
+  end
+
+  resources :bids
+
+  #resources :auctions, only: [:create, :destroy, :index, :edit, :update]
+  #resources :bids, only: [:create, :destroy, :index,:edit, :update]
   
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

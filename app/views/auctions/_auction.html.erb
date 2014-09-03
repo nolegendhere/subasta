@@ -1,0 +1,21 @@
+<li>
+	<span class="auctiontitle"><%= auction.title %></span>
+	<span class="content"><%= simple_format auction.content %></span>
+	<span class="timestamp">
+		Created <%= time_ago_in_words(auction.created_at) %> ago by <%= auction.user.name %> .
+	</span>
+	<% if admin?(current_user) %>
+		<%= link_to "edit", edit_auction_path(auction),data: { confirm: "You sure?" },title: auction.content %>
+		<%= link_to "delete", auction, method: :delete,data: { confirm: "You sure?" },title: auction.content %>
+	<% end %>
+	<div class="row">
+		<div class="span4">
+			<ol class="userbids">
+				<%= render auction.bids %>
+			</ol>
+		</div>
+		<div class="span8">
+			<%= render partial: "bids/form", locals: {auction: auction} %>
+		</div>
+	</div>
+</li>

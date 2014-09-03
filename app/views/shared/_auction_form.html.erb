@@ -1,0 +1,10 @@
+<%= form_for(@auction) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.label :title %>
+		<%= f.text_field :title, placeholder: "Title for new auction..." %>
+		<%= f.label :content %>
+		<%= f.text_area :content, placeholder: "Describe new auction..." %>
+	</div>
+	<%= f.submit "Auction", class: "btn btn-large btn-primary" %>
+<% end %>
