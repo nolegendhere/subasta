@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :auctions , dependent: :destroy
 	has_many :bids, dependent: :destroy
+	has_many :investments, dependent: :destroy
 
 	#before_save { self.email = email.downcase }
 	before_save { email.downcase! }
@@ -12,7 +13,8 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, 
 		uniqueness: { case_sensitive: false }
 	validates :password, length: { minimum: 6 }
-
+	validates_numericality_of :initial_cash, :only_integer => true, presence: true
+	validates_numericality_of :actual_cash, :only_integer => true, presence: true
 	has_secure_password
 
 	def User.new_remember_token

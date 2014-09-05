@@ -14,8 +14,10 @@
 				<%= render auction.bids %>
 			</ol>
 		</div>
+		<%if signed_in?%>
 		<div class="span8">
 			<%= render partial: "bids/form", locals: {auction: auction} %>
 		</div>
+		<%end%>
 	</div>
 </li>

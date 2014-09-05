@@ -8,7 +8,9 @@ class AuctionsController < ApplicationController
 		@auctions = Auction.paginate(page: params[:page])
 		if admin?(current_user)
 			@bid = current_user.bids.build
+			@investment = current_user.investments.build
 		end
+		
 	end
 
 	def create

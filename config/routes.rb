@@ -7,13 +7,19 @@ Subasta::Application.routes.draw do
 
   resources :users do
     resources :auctions
+    resources :investments
   end
 
   resources :auctions do
     resources :bids
   end
 
-  resources :bids
+  resources :bids do
+    resources :investments
+  end
+  
+
+  resources :investments
 
   #resources :auctions, only: [:create, :destroy, :index, :edit, :update]
   #resources :bids, only: [:create, :destroy, :index,:edit, :update]

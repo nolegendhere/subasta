@@ -6,12 +6,15 @@ class BidsController < ApplicationController
 	
 	def create
 		@bid= Bid.create(bid_params)
+		@bid.actual_amount=@bid.price
+		@bid.max_amount=@bid.price
 		@bid.user_id = current_user.id
 		if @bid.save
 			flash[:success] = "Bid created!"
 			redirect_to auctions_url
 		else
 			@auctions = Auction.paginate(page: params[:page])
+			#@investment = current_user.investments.build
 			render 'auctions/index'
 		end
 	end

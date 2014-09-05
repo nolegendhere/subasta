@@ -1,0 +1,10 @@
+<%= form_for(@investment) do |f| %>
+	<%= f.hidden_field :bid_id, :value => bid.id %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<span class="content"><%= @investment.bid_id %></span>
+	<div class="field">
+		<%= f.label :amount %>
+		<%= f.text_field :amount, placeholder: "Amount of investment..." %>
+	</div>
+	<%= f.submit "Investment", class: "btn btn-large btn-primary" %>
+<% end %>
