@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   
     def show
     	@user = User.find(params[:id])
+      @wallet = Wallet.find_by(user_id: @user.id)
   	end
 
   	def new
@@ -18,8 +19,13 @@ class UsersController < ApplicationController
 
     def create
       @user = User.new(user_params)
-      if @user.save
+      if @user.save 
         sign_in @user
+        @wallet = Wallet.new
+        @wallet.user_id = current_user.id
+        @wallet.initial_cash=1000
+        @wallet.actual_cash=1000
+        @wallet.save
         flash[:success] = "Welcome to the Sample App!"
         redirect_to @user
       else
@@ -69,5 +75,4 @@ class UsersController < ApplicationController
           redirect_to root_url
         end
       end
-   
 end

@@ -6,7 +6,7 @@ module SessionsHelper
     user.update_attribute(:remember_token, User.digest(remember_token))
     self.current_user = user
   end
-
+  
   def signed_in?
     !current_user.nil?
   end
@@ -55,6 +55,14 @@ module SessionsHelper
       redirect_to(root_url)
     end
     #redirect_to(root_url) unless current_user.admin?
+  end
+
+  def wallets_created?
+    !Wallet.where("wallets.user_id IS NOT NULL")
+  end
+
+  def wallet_created?(user)
+    Wallet.find_by(user_id: user.id)
   end
 
 end

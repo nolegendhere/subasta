@@ -1,0 +1,12 @@
+<% provide(:title, "Create Wallet") %>
+<%= form_for ([@user,@wallet]) do |f| %>
+	<%= f.hidden_field :user_id, :value => @user.id %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.label :initial_cash %>
+		<%= f.text_field :initial_cash, placeholder: "Initial cash..." %>
+		<%= f.label :actual_cash %>
+		<%= f.text_field :actual_cash, placeholder: "Actual cash..." %>
+	</div>
+	<%= f.submit "Wallet", class: "btn btn-large btn-primary" %>
+<% end %>

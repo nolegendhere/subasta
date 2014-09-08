@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904145033) do
+ActiveRecord::Schema.define(version: 20140908171250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,10 +49,12 @@ ActiveRecord::Schema.define(version: 20140904145033) do
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "wallet_id"
   end
 
   add_index "investments", ["bid_id"], name: "index_investments_on_bid_id", using: :btree
   add_index "investments", ["user_id", "created_at"], name: "index_investments_on_user_id_and_created_at", using: :btree
+  add_index "investments", ["wallet_id"], name: "index_investments_on_wallet_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -68,5 +70,15 @@ ActiveRecord::Schema.define(version: 20140904145033) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "wallets", force: true do |t|
+    t.integer  "actual_cash",  default: 0
+    t.integer  "initial_cash", default: 0
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wallets", ["user_id"], name: "index_wallets_on_user_id", using: :btree
 
 end

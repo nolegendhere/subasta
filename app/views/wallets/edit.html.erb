@@ -1,0 +1,16 @@
+<% provide(:title, "Edit Wallet") %>
+	<h1>Update Wallet</h1>
+	<div class="row">
+		<div class="span6 offset3">
+			<%= form_for ([@user,@wallet]) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<div class="field">
+					<%= f.label :initial_cash %>
+					<%= f.text_field :initial_cash %>
+					<%= f.label :actual_cash%>
+					<%= f.text_field :actual_cash %>
+				</div>
+					<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+			<% end %>
+		</div>
+	</div>
