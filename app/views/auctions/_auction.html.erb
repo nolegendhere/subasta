@@ -14,7 +14,7 @@
 				<%= render auction.bids %>
 			</ol>
 		</div>
-		<%if signed_in?%>
+		<%if admin?(current_user)%>
 		<div class="span8">
 			<%= render partial: "bids/form", locals: {auction: auction} %>
 		</div>

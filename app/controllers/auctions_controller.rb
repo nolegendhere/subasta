@@ -8,6 +8,8 @@ class AuctionsController < ApplicationController
 		@auctions = Auction.paginate(page: params[:page])
 		if admin?(current_user)
 			@bid = current_user.bids.build
+		end
+		if signed_in?
 			@investment = current_user.investments.build
 		end
 		
