@@ -4,6 +4,7 @@ class Investment < ActiveRecord::Base
 	belongs_to :wallet
 
 	validates_numericality_of :amount, :only_integer => true, presence: true
+	validates_numericality_of :past_amount, :only_integer => true, presence: true
 	validates :user_id, presence: true
 	validates :bid_id, presence: true
 

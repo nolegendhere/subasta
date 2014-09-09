@@ -5,4 +5,8 @@
 	<span class="content">Investment id: <%= investment.id %></span>
 	<span class="content">Investment user id: <%= investment.user_id %></span>
 	<span class="content">Investment wallet id: <%= investment.wallet_id %></span>
+	<% if admin?(current_user) %>
+		| <%= link_to "edit", edit_investment_path(investment)%>
+		| <%= link_to "delete", investment, method: :delete,data: { confirm: "You sure?" },title: investment.amount %>
+	<% end %>
 </small>

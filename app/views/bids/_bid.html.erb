@@ -1,11 +1,11 @@
 <small>
-	<span class="content"><%= bid.name %></span>
-	<span class="content"><%= bid.category %></span>
-	<span class="content"><%= bid.subcategory %></span>
-	<span class="content"><%= bid.price %></span>
-	<span class="content"><%= bid.actual_amount %></span>
-	<span class="content"><%= bid.max_amount %></span>
-	<span class="content"><%= bid.id %></span>
+	<span class="content">Bid name: <%= bid.name %></span>
+	<span class="content">Bid category: <%= bid.category %></span>
+	<span class="content">Bid subcategory: <%= bid.subcategory %></span>
+	<span class="content">Bid price: <%= bid.price %></span>
+	<span class="content">Bid actual amount: <%= bid.actual_amount %></span>
+	<span class="content">Bid max amount: <%= bid.max_amount %></span>
+	<span class="content">Bid id: <%= bid.id %></span>
 	<span class="timestamp">
 		Created <%= time_ago_in_words(bid.created_at) %> ago by <%= bid.user.name %>
 	</span>
