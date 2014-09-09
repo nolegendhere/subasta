@@ -8,12 +8,16 @@ class InvestmentsController < ApplicationController
 		@investment.user_id = current_user.id
 		#@bid=Bid.where( :id => @investment.bid_id).first
 		@bid=Bid.find_by_id(investment_params[:bid_id])
+		@wallet= Wallet.find_by(user_id: current_user.id)
+		@investment.wallet_id=@wallet.id
 		if  @investment.save
 			if @investment.amount>@bid.max_amount && @investment.amount>@bid.price
 				@bid.max_amount=@investment.amount
-				@bid.actual_amount=@bid.actual_amount+1
+				@bid.actual_amount=@investment.amount
 				@bid.actual_amount_id=@investment.id
 				@bid.save
+				@wallet.actual_cash=@wallet.actual_cash-@investment.amount
+				@wallet.save 
 				flash[:success] = "Investment made, you have made the larger amount"
 				redirect_to auctions_url
 			elsif @investment.amount<=@bid.max_amount && @investment.amount>@bid.actual_amount && @investment.amount>@bid.price
