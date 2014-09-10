@@ -4,6 +4,16 @@ class Bid < ActiveRecord::Base
 	has_many :investments, dependent: :destroy
 
 	default_scope -> { order('created_at DESC') }
+	scope :by_team, where(category: 'team')
+	scope :by_player, where(category: 'player')
+	scope :by_pg, where(subcategory: 'pg')
+	scope :by_sg, where(subcategory: 'sg')
+	scope :by_sf, where(subcategory: 'sf')
+	scope :by_pf, where(subcategory: 'pf')
+	scope :by_ce, where(subcategory: 'ce')
+
+
+
 	validates :user_id, presence: true
 	validates :auction_id, presence: true
 	validates :name, presence: true
