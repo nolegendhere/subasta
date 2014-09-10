@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 	has_many :auctions , dependent: :destroy
 	has_many :bids, dependent: :destroy
 	has_many :investments, dependent: :destroy
-	has_one :wallet, dependent: :destroy
+	has_one  :wallet, dependent: :destroy
+	has_one  :choice, dependent: :destroy
 
 	#before_save { self.email = email.downcase }
 	before_save { email.downcase! }

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     def show
     	@user = User.find(params[:id])
       @wallet = Wallet.find_by(user_id: @user.id)
+      @choice = Choice.find_by(user_id: @user.id)
   	end
 
   	def new
@@ -26,6 +27,9 @@ class UsersController < ApplicationController
         @wallet.initial_cash=1000
         @wallet.actual_cash=1000
         @wallet.save
+        @choice=Choice.new
+        @choice.user_id = current_user.id
+        @choice.save
         flash[:success] = "Welcome to the Sample App!"
         redirect_to @user
       else

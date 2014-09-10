@@ -1,16 +1,29 @@
-<% provide(:title, "Wallet of #{@user.name}") %>
+<% provide(:title, "Wallet and Choice of #{@user.name}") %>
 <div class="row">
   <aside class="span4">
     <section>
       <h1>
         <%= @user.name %>
-        <% if ( current_user.admin? || !current_user?(@user) ) && wallet_created?(@user) %>
-		      | <%= link_to "wallet", user_wallet_path(@user,@wallet) %>
+        <% if  current_user.admin? && wallet_created?(@user) %>
+          | <%= link_to "wallet", user_wallet_path(@user,@wallet) %>		      
           | <%= link_to "edit_wallet", edit_user_wallet_path(@user,@wallet)%>
           | <%= link_to "delete", user_wallet_path(@user,@wallet), method: :delete, data: { confirm: "You sure?" },title: @user.name %>
+        <% elsif  current_user?(@user) && wallet_created?(@user) %>
+          | <%= link_to "wallet", user_wallet_path(@user,@wallet) %>
         <% elsif current_user.admin? %>
           | <%= link_to "new_wallet", new_user_wallet_path(@user) %>
     	  <% end %>
+      </h1>
+      <h1>
+        <% if  current_user.admin? && choice_created?(@user) %>
+          | <%= link_to "choice", user_choice_path(@user,@choice) %>          
+          | <%= link_to "edit_choice", edit_user_choice_path(@user,@choice)%>
+          | <%= link_to "delete", user_choice_path(@user,@choice), method: :delete, data: { confirm: "You sure?" },title: @user.name %>
+        <% elsif  current_user?(@user) && choice_created?(@user) %>
+          | <%= link_to "choice", user_choice_path(@user,@choice) %>
+        <% elsif current_user.admin? %>
+          | <%= link_to "new_choice", new_user_choice_path(@user) %>
+        <% end %>
       </h1>
     </section>
   </aside>

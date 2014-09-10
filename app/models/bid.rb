@@ -3,6 +3,7 @@ class Bid < ActiveRecord::Base
 	belongs_to :user
 	has_many :investments, dependent: :destroy
 
+
 	default_scope -> { order('created_at DESC') }
 	scope :by_team, where(category: 'team')
 	scope :by_player, where(category: 'player')

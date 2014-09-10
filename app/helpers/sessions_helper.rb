@@ -65,4 +65,8 @@ module SessionsHelper
     Wallet.find_by(user_id: user.id)
   end
 
+  def choice_created?(user)
+    Choice.find_by(user_id: user.id)
+  end
+
 end

@@ -1,0 +1,30 @@
+<% provide(:title, "Create Choice") %>
+<%= form_for ([@user,@choice]) do |f| %>
+	<%= f.hidden_field :user_id, :value => @user.id %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.label :team %>
+		<%= f.text_field :team, placeholder: "true of false..." %>
+		<%= f.label :player%>
+		<%= f.text_field :player, placeholder: "true of false..." %>
+		<%= f.label :pg%>
+		<%= f.text_field :pg, placeholder: "true of false..." %>
+		<%= f.label :sg%>
+		<%= f.text_field :sg, placeholder: "true of false..." %>
+		<%= f.label :sf%>
+		<%= f.text_field :sf, placeholder: "true of false..." %>
+		<%= f.label :pf%>
+		<%= f.text_field :pf, placeholder: "true of false..." %>
+		<%= f.label :ce%>
+		<%= f.text_field :ce, placeholder: "true of false..." %>
+		<%= f.label :max_amount%>
+		<%= f.text_field :max_amount, placeholder: "true of false..." %>
+		<%= f.label :min_amount%>
+		<%= f.text_field :min_amount, placeholder: "true of false..." %>
+		<%= f.label :max_time%>
+		<%= f.text_field :max_time, placeholder: "true of false..." %>
+		<%= f.label :min_time%>
+		<%= f.text_field :min_time, placeholder: "true of false..." %>
+	</div>
+	<%= f.submit "Choice", class: "btn btn-large btn-primary" %>
+<% end %>

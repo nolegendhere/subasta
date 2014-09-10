@@ -9,6 +9,7 @@ Subasta::Application.routes.draw do
     resources :auctions
     resources :investments
     resources :wallets
+    resources :choices
   end
 
   resources :auctions do
@@ -23,6 +24,7 @@ Subasta::Application.routes.draw do
     resources :investments
   end
   
+  resources :choices
   resources :investments
 
   #resources :auctions, only: [:create, :destroy, :index, :edit, :update]
