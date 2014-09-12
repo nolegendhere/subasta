@@ -6,7 +6,7 @@ class Bid < ActiveRecord::Base
 
 	default_scope -> { order('created_at DESC') }
 	scope :by_team, where(category: 'team')
-	scope :by_player, where(category: 'player')
+	#scope :by_player, where(category: 'player', auction_id: auction.id)
 	scope :by_pg, where(subcategory: 'pg')
 	scope :by_sg, where(subcategory: 'sg')
 	scope :by_sf, where(subcategory: 'sf')

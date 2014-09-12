@@ -1,3 +1,4 @@
+
 	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
 	  <div><%= f.hidden_field :all_objects, :value => true %></div>
 	  <div><%= f.hidden_field :team, :value => false %></div>
@@ -13,8 +14,8 @@
 	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
 	  <div><%= f.hidden_field :all_objects, :value => false %></div>
 	  <div><%= f.hidden_field :team, :value => false %></div>
-	  <div><%= f.hidden_field :player, :value => false %></div>
-	  <div><%= f.hidden_field :pg, :value => true %></div>
+	  <div><%= f.hidden_field :player, :value => true %></div>
+	  <div><%= f.hidden_field :pg, :value => false %></div>
 	  <div><%= f.hidden_field :sg, :value => false %></div>
 	  <div><%= f.hidden_field :sf, :value => false %></div>
 	  <div><%= f.hidden_field :pf, :value => false %></div>
@@ -83,6 +84,7 @@
 	<% end %>
 
 
+
 <li>
 	<span class="auctiontitle"><%= auction.title %></span>
 	<span class="content"><%= simple_format auction.content %></span>
@@ -101,19 +103,19 @@
 				<% if Choice.find_by(user_id: current_user.id).all_objects ==true %>
 					<%= render auction.bids%>
 				<% elsif Choice.find_by(user_id: current_user.id).pg ==true %>
-					<%= render auction.bids.by_pg%>
+					<%= render auction.bids.where(subcategory: 'pg', auction_id: auction.id)%>
 				<% elsif Choice.find_by(user_id: current_user.id).sg ==true %>
-					<%= render auction.bids.by_sg%>
+					<%= render auction.bids.where(subcategory: 'sg', auction_id: auction.id)%>
 				<% elsif Choice.find_by(user_id: current_user.id).sf ==true %>
-					<%= render auction.bids.by_sf%>
+					<%= render auction.bids.where(subcategory: 'sf', auction_id: auction.id)%>
 				<% elsif Choice.find_by(user_id: current_user.id).pf ==true %>
-					<%= render auction.bids.by_pf%>
+					<%= render auction.bids.where(subcategory: 'pf', auction_id: auction.id)%>
 				<% elsif Choice.find_by(user_id: current_user.id).ce ==true %>
-					<%= render auction.bids.by_ce%>
+					<%= render auction.bids.where(subcategory: 'ce', auction_id: auction.id)%>
 				<% elsif Choice.find_by(user_id: current_user.id).team ==true %>
-					<%= render auction.bids.by_team%>
+					<%= render auction.bids.where(category: 'team', auction_id: auction.id)%>
 				<% elsif Choice.find_by(user_id: current_user.id).player ==true %>
-					<%= render auction.bids.by_player%>
+					<%= render auction.bids.where(category: 'player', auction_id: auction.id)%>
 				<% end %>
 			</ol>
 		</div>
