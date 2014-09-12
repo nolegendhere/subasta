@@ -3,6 +3,8 @@
 	<%= f.hidden_field :user_id, :value => @user.id %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
+		<%= f.label :all_objects %>
+		<%= f.text_field :all_objects, placeholder: "true of false..." %>
 		<%= f.label :team %>
 		<%= f.text_field :team, placeholder: "true of false..." %>
 		<%= f.label :player%>

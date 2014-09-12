@@ -2,6 +2,7 @@ class Choice < ActiveRecord::Base
 	belongs_to :user
 
 	validates :user_id, presence: true
+	validates_inclusion_of :all_objects, in: [true, false]
 	validates_inclusion_of :team, in: [true, false]  
 	validates_inclusion_of :player, in: [true, false]
 	validates_inclusion_of :pg, in: [true, false]  

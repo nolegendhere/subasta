@@ -1,6 +1,92 @@
+	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
+	  <div><%= f.hidden_field :all_objects, :value => true %></div>
+	  <div><%= f.hidden_field :team, :value => false %></div>
+	  <div><%= f.hidden_field :player, :value => false %></div>
+	  <div><%= f.hidden_field :pg, :value => false %></div>
+	  <div><%= f.hidden_field :sg, :value => false %></div>
+	  <div><%= f.hidden_field :sf, :value => false %></div>
+	  <div><%= f.hidden_field :pf, :value => false %></div>
+	  <div><%= f.hidden_field :ce, :value => false %></div>
+	  <%= f.submit "All bids", class: "btn btn-large" %>
+	<% end %>
+
+	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
+	  <div><%= f.hidden_field :all_objects, :value => false %></div>
+	  <div><%= f.hidden_field :team, :value => false %></div>
+	  <div><%= f.hidden_field :player, :value => false %></div>
+	  <div><%= f.hidden_field :pg, :value => true %></div>
+	  <div><%= f.hidden_field :sg, :value => false %></div>
+	  <div><%= f.hidden_field :sf, :value => false %></div>
+	  <div><%= f.hidden_field :pf, :value => false %></div>
+	  <div><%= f.hidden_field :ce, :value => false %></div>
+	  <%= f.submit "Players", class: "btn btn-large" %>
+	<% end %>
+
+	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
+	  <div><%= f.hidden_field :all_objects, :value => false %></div>
+	  <div><%= f.hidden_field :team, :value => false %></div>
+	  <div><%= f.hidden_field :player, :value => false %></div>
+	  <div><%= f.hidden_field :pg, :value => true %></div>
+	  <div><%= f.hidden_field :sg, :value => false %></div>
+	  <div><%= f.hidden_field :sf, :value => false %></div>
+	  <div><%= f.hidden_field :pf, :value => false %></div>
+	  <div><%= f.hidden_field :ce, :value => false %></div>
+	  <%= f.submit "PG", class: "btn btn-large" %>
+	<% end %>
+
+	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
+	  <div><%= f.hidden_field :all_objects, :value => false %></div>
+	  <div><%= f.hidden_field :team, :value => false %></div>
+	  <div><%= f.hidden_field :player, :value => false %></div>
+	  <div><%= f.hidden_field :pg, :value => false %></div>
+	  <div><%= f.hidden_field :sg, :value => true %></div>
+	  <div><%= f.hidden_field :sf, :value => false %></div>
+	  <div><%= f.hidden_field :pf, :value => false %></div>
+	  <div><%= f.hidden_field :ce, :value => false %></div>
+	  <%= f.submit "SG", class: "btn btn-large" %>
+	<% end %>
+
+	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
+	  <div><%= f.hidden_field :all_objects, :value => false %></div>
+	  <div><%= f.hidden_field :team, :value => false %></div>
+	  <div><%= f.hidden_field :player, :value => false %></div>
+	  <div><%= f.hidden_field :pg, :value => false %></div>
+	  <div><%= f.hidden_field :sg, :value => false %></div>
+	  <div><%= f.hidden_field :sf, :value => true %></div>
+	  <div><%= f.hidden_field :pf, :value => false %></div>
+	  <div><%= f.hidden_field :ce, :value => false %></div>
+	  <%= f.submit "SF", class: "btn btn-large" %>
+	<% end %>
+
+	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
+	  <div><%= f.hidden_field :all_objects, :value => false %></div>
+	  <div><%= f.hidden_field :team, :value => false %></div>
+	  <div><%= f.hidden_field :player, :value => false %></div>
+	  <div><%= f.hidden_field :pg, :value => false %></div>
+	  <div><%= f.hidden_field :sg, :value => false %></div>
+	  <div><%= f.hidden_field :sf, :value => false %></div>
+	  <div><%= f.hidden_field :pf, :value => true %></div>
+	  <div><%= f.hidden_field :ce, :value => false %></div>
+	  <%= f.submit "PF", class: "btn btn-large" %>
+	<% end %>
+
+	<%= form_for(Choice.find_by(user_id: current_user.id)) do |f| %>
+	  <div><%= f.hidden_field :all_objects, :value => false %></div>
+	  <div><%= f.hidden_field :team, :value => false %></div>
+	  <div><%= f.hidden_field :player, :value => false %></div>
+	  <div><%= f.hidden_field :pg, :value => false %></div>
+	  <div><%= f.hidden_field :sg, :value => false %></div>
+	  <div><%= f.hidden_field :sf, :value => false %></div>
+	  <div><%= f.hidden_field :pf, :value => false %></div>
+	  <div><%= f.hidden_field :ce, :value => true %></div>
+	  <%= f.submit "CE", class: "btn btn-large" %>
+	<% end %>
+
+
 <li>
 	<span class="auctiontitle"><%= auction.title %></span>
 	<span class="content"><%= simple_format auction.content %></span>
+	<span class="content">Auction id: <%= auction.id %></span>
 	<span class="timestamp">
 		Created <%= time_ago_in_words(auction.created_at) %> ago by <%= auction.user.name %> .
 	</span>
@@ -8,10 +94,27 @@
 		<%= link_to "edit", edit_auction_path(auction),data: { confirm: "You sure?" },title: auction.content %>
 		<%= link_to "delete", auction, method: :delete,data: { confirm: "You sure?" },title: auction.content %>
 	<% end %>
+
 	<div class="row">
 		<div class="span4">
 			<ol class="userbids">
-				<%= render auction.bids%>
+				<% if Choice.find_by(user_id: current_user.id).all_objects ==true %>
+					<%= render auction.bids%>
+				<% elsif Choice.find_by(user_id: current_user.id).pg ==true %>
+					<%= render auction.bids.by_pg%>
+				<% elsif Choice.find_by(user_id: current_user.id).sg ==true %>
+					<%= render auction.bids.by_sg%>
+				<% elsif Choice.find_by(user_id: current_user.id).sf ==true %>
+					<%= render auction.bids.by_sf%>
+				<% elsif Choice.find_by(user_id: current_user.id).pf ==true %>
+					<%= render auction.bids.by_pf%>
+				<% elsif Choice.find_by(user_id: current_user.id).ce ==true %>
+					<%= render auction.bids.by_ce%>
+				<% elsif Choice.find_by(user_id: current_user.id).team ==true %>
+					<%= render auction.bids.by_team%>
+				<% elsif Choice.find_by(user_id: current_user.id).player ==true %>
+					<%= render auction.bids.by_player%>
+				<% end %>
 			</ol>
 		</div>
 		<%if admin?(current_user)%>

@@ -5,6 +5,8 @@
 			<%= form_for ([@user,@choice]) do |f| %>
 				<%= render 'shared/error_messages', object: f.object %>
 				<div class="field">
+					<%= f.label :all_objects %>
+					<%= f.text_field :all_objects %>
 					<%= f.label :team %>
 					<%= f.text_field :team %>
 					<%= f.label :player%>

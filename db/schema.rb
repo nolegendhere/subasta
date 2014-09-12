@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910152812) do
+ActiveRecord::Schema.define(version: 20140912113247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,20 +44,21 @@ ActiveRecord::Schema.define(version: 20140910152812) do
   add_index "bids", ["user_id", "created_at"], name: "index_bids_on_user_id_and_created_at", using: :btree
 
   create_table "choices", force: true do |t|
-    t.boolean  "pg",         default: false
-    t.boolean  "sg",         default: false
-    t.boolean  "sf",         default: false
-    t.boolean  "pf",         default: false
-    t.boolean  "ce",         default: false
-    t.boolean  "player",     default: false
-    t.boolean  "team",       default: false
-    t.boolean  "max_amount", default: false
-    t.boolean  "min_amount", default: false
-    t.boolean  "max_time",   default: false
-    t.boolean  "min_time",   default: false
+    t.boolean  "pg",          default: false
+    t.boolean  "sg",          default: false
+    t.boolean  "sf",          default: false
+    t.boolean  "pf",          default: false
+    t.boolean  "ce",          default: false
+    t.boolean  "player",      default: false
+    t.boolean  "team",        default: false
+    t.boolean  "max_amount",  default: false
+    t.boolean  "min_amount",  default: false
+    t.boolean  "max_time",    default: false
+    t.boolean  "min_time",    default: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "all_objects"
   end
 
   add_index "choices", ["user_id"], name: "index_choices_on_user_id", using: :btree

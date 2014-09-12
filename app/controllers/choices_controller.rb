@@ -29,7 +29,7 @@ class ChoicesController < ApplicationController
 		@user = User.find_by(id: @choice.user_id)
 		if @choice.update(choice_params)
 			flash[:success] = "Choice updated"
-			redirect_to @user
+			redirect_to auctions_url
 		else
 			render 'edit'
 		end
@@ -51,6 +51,6 @@ class ChoicesController < ApplicationController
     private
 
     	def choice_params
-      		params.require(:choice).permit(:pg, :sg, :sf, :pf, :ce, :team, :player, :max_amount, :min_amount, :max_time, :min_time,  :user_id)
+      		params.require(:choice).permit(:all_objects,:pg, :sg, :sf, :pf, :ce, :team, :player, :max_amount, :min_amount, :max_time, :min_time,  :user_id)
       	end
 end
